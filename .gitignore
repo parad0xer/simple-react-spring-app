@@ -1,0 +1,37 @@
+# dependencies
+/demo-app-client/node_modules
+/demo-app-client/.pnp
+/demo-app-client/.pnp.js
+
+
+# testing
+/demo-app-client/coverage
+
+# production
+/demo-app-client/build
+
+# misc
+/demo-app-client/.env.local
+/demo-app-client/.env.development.local
+/demo-app-client/.env.test.local
+/demo-app-client/.env.production.local
+/demo-app-client/README.md
+/demo-app-client/npm-debug.log*
+/demo-app-client/yarn-debug.log*
+/demo-app-client/yarn-error.log*
+
+/demo-app-server/HELP.md
+/demo-app-server/target/
+!/demo-app-server/.mvn/wrapper/maven-wrapper.jar
+!/demo-app-server/**/src/main/**
+!/demo-app-server/**/src/test/**
+### STS ###
+/demo-app-server/.apt_generated
+/demo-app-server/.classpath
+/demo-app-server/.factorypath
+/demo-app-server/.project
+/demo-app-server/.settings
+/demo-app-server/.springBeans
+/demo-app-server/.sts4-cache
+
+**/.DS_Store

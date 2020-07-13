@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  # Demo-app-server
+  demo-app-server:
+    build:
+      context: demo-app-server 
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" 
+    restart: always
+    depends_on: 
+      - db 
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demoapp_db?useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root     
+    networks: 
+      - backend
+      - frontend
+
+  # Demo-app-client
+  demo-app-client:
+    build:
+      context: demo-app-client 
+      dockerfile: Dockerfile
+      args:
+        DEMO_APP_SERVER_URL: http://127.0.0.1:8080/
+    ports:
+      - "3000:80" 
+    restart: always
+    depends_on:
+      - demo-app-server
+    networks:
+      - frontend  
+
+  # MySQL
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: demoapp_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./demo_db:/var/lib/mysql
+    networks:
+      - backend  
+
+volumes:
+  demo_db:
+
+networks:
+  backend:
+  frontend:  
